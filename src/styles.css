@@ -1,0 +1,254 @@
+:root {
+  /* Paper: a cool celadon-tinted neutral, not the warm cream that's become the
+     default "AI-generated" ground — closer to porcelain than to parchment. */
+  --bg: #F1F4EC;
+  --panel: #FFFFFF;
+  --panel-tint: #FBFAF4;
+  --ink: #26202F;
+  --ink-2: #564F61;
+  --ink-3: #8B8392;
+  --line: #E0DCD0;
+  --line-2: #ECE8DC;
+
+  --accent: #4A5FC1;
+  --accent-ink: #333F91;
+
+  /* Mosaic categorical hues — see components/encoding.ts for the validation note. */
+  --terracotta: #C1693B; --terracotta-wash: #F5E3D6;
+  --jade: #1E8F72;       --jade-wash: #DCF0E9;
+  --gold: #C98A1C;       --gold-wash: #F6E8C9;
+  --indigo: #4A5FC1;     --indigo-wash: #E3E6F8;
+  --vermillion: #D1472E; --vermillion-wash: #F7DED7;
+  --teal: #1F8FAE;       --teal-wash: #DCEFF4;
+  --violet: #8A4FD1;     --violet-wash: #ECE1F9;
+  --rose: #C65A82;       --rose-wash: #F7DFE7;
+
+  --gain: var(--jade);       --gain-wash: var(--jade-wash);
+  --loss: var(--vermillion); --loss-wash: var(--vermillion-wash);
+  --warn-bg: var(--gold-wash); --warn-ink: #7A5A0A;
+
+  --radius: 10px;
+  --font: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', var(--font);
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+
+/* A faint nested-diamond lattice, the kind of fretwork seen on Chinatown gate
+   screens and window grilles — used once, sparingly, as texture rather than
+   decoration (see the banner below). */
+.lattice {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cpath d='M22 1 L43 22 L22 43 L1 22 Z' fill='none' stroke='%2326202F' stroke-opacity='0.085' stroke-width='1.4'/%3E%3Cpath d='M22 13 L31 22 L22 31 L13 22 Z' fill='none' stroke='%2326202F' stroke-opacity='0.085' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; font: 15px/1.5 var(--font); color: var(--ink); background: var(--bg); }
+button { font: inherit; color: inherit; cursor: pointer; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.2; font-family: var(--font-display); }
+a { color: var(--accent-ink); }
+
+.app { display: flex; flex-direction: column; height: 100%; min-width: 1100px; }
+
+.banner {
+  background: var(--warn-bg); color: var(--warn-ink); text-align: center;
+  font-weight: 600; padding: 7px 12px; border-bottom: 1px solid #E8CE8E; letter-spacing: 0.01em;
+}
+.banner.lattice { background-blend-mode: multiply; }
+
+.topbar {
+  display: flex; align-items: center; gap: 24px; padding: 11px 20px;
+  background: var(--panel); border-bottom: 1px solid var(--line);
+}
+.topbar h1 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+.topbar h1 small { font-family: var(--font); font-weight: 400; color: var(--ink-3); margin-left: 9px; font-size: 14px; }
+.tabs { display: flex; gap: 6px; margin-left: auto; }
+.tabs button {
+  border: 1px solid var(--line); background: var(--bg); padding: 7px 16px; border-radius: 999px;
+  font-weight: 600; font-family: var(--font-display);
+}
+.tabs button[aria-selected='true'] { background: var(--accent); color: #fff; border-color: var(--accent-ink); }
+.tabs button .q { font-weight: 400; font-family: var(--font); opacity: 0.78; margin-left: 7px; }
+
+.tab-body { flex: 1; min-height: 0; position: relative; }
+
+/* ---------- shared ---------- */
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+/* Each panel reads as a tile in a set, not an identical box: a thin color edge
+   names what kind of thing it holds, the way bordered tesserae mark out a
+   mosaic field without needing a different shape for every piece. */
+.card.tile { border-top: 3px solid var(--tile-color, var(--line)); }
+.section-title {
+  font-family: var(--font-display); font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink-2);
+  font-weight: 600; margin-bottom: 7px; display: flex; align-items: center; gap: 7px;
+}
+.section-title::before {
+  content: ''; width: 7px; height: 7px; border-radius: 2px; background: var(--tile-color, var(--line));
+  flex: none; transform: rotate(45deg);
+}
+.muted { color: var(--ink-3); }
+.small { font-size: 13px; }
+.row { display: flex; align-items: center; gap: 8px; }
+.wrap { flex-wrap: wrap; }
+.spacer { flex: 1; }
+
+.seg-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--panel); }
+.seg-toggle button { border: 0; background: none; padding: 6px 14px; font-weight: 600; }
+.seg-toggle button[aria-pressed='true'] { background: var(--ink); color: #fff; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--panel);
+  border-radius: 999px; padding: 3px 10px; font-size: 13px; user-select: none;
+}
+.chip input { margin: 0; accent-color: var(--accent); }
+.chip.off { opacity: 0.5; }
+
+.ev { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; border: 1.5px solid; }
+.ev-documented { border-style: solid; border-color: var(--ink-2); color: var(--ink-2); background: var(--panel-tint); }
+.ev-press { border-style: dashed; border-color: var(--indigo); color: var(--accent-ink); background: var(--indigo-wash); }
+.ev-interview { border-style: dotted; border-color: var(--violet); color: #5B3498; background: var(--violet-wash); }
+.ev-synthetic { border-style: solid; border-color: var(--gold); color: #7A5A0A;
+  background: repeating-linear-gradient(135deg, var(--gold-wash) 0 4px, #EFD79C 4px 6px); }
+
+.btn { border: 1px solid var(--line); background: var(--panel); border-radius: 7px; padding: 5px 12px; font-weight: 600; }
+.btn:hover { border-color: var(--ink-3); }
+.btn.primary { background: var(--accent); color: #fff; border-color: var(--accent-ink); }
+.linkish { border: 0; background: none; padding: 0; color: var(--accent-ink); text-decoration: underline; font-weight: 600; }
+
+/* ---------- side panel ---------- */
+.drawer {
+  position: absolute; top: 12px; right: 12px; bottom: 12px; width: 400px; z-index: 20;
+  background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--tile-color, var(--accent)); border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(38, 32, 47, 0.14); display: flex; flex-direction: column;
+}
+.drawer header { padding: 14px 16px 10px; border-bottom: 1px solid var(--line-2); display: flex; gap: 10px; align-items: flex-start; }
+.drawer header h2 { font-size: 18.5px; font-weight: 600; }
+.drawer header .kicker { font-size: 12px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 3px; }
+.drawer .close { margin-left: auto; border: 0; background: none; font-size: 22px; line-height: 1; color: var(--ink-3); padding: 0 4px; }
+.drawer .body { padding: 12px 16px 18px; overflow: auto; display: flex; flex-direction: column; gap: 14px; }
+.drawer dl { display: grid; grid-template-columns: 110px 1fr; gap: 6px 10px; margin: 0; font-size: 14px; }
+.drawer dt { color: var(--ink-3); }
+.drawer dd { margin: 0; }
+.quote { border-left: 3px solid var(--rose); padding: 2px 0 2px 10px; color: var(--ink-2); font-style: italic; background: linear-gradient(to right, var(--rose-wash), transparent 60%); }
+.drivers li, .ripple li { margin: 3px 0; }
+.drivers, .ripple { margin: 0; padding-left: 18px; }
+.case-card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--teal-wash); border-color: #BFE0E8; }
+.case-card h4 { font-size: 14px; margin-bottom: 4px; }
+.flag { background: var(--warn-bg); color: var(--warn-ink); font-size: 12px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+
+/* ---------- Tab 1 ---------- */
+.power { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+.power-controls { display: flex; gap: 14px; align-items: center; padding: 10px 20px; flex-wrap: wrap; border-bottom: 1px solid var(--line-2); background: var(--panel-tint); }
+.layer-stat { font-size: 13px; color: var(--ink-2); }
+.layer-stat b { font-variant-numeric: tabular-nums; }
+.graph-wrap { position: relative; min-height: 0; }
+.graph-wrap svg { width: 100%; height: 100%; display: block; }
+.node { cursor: pointer; }
+.node text { font-size: 11.5px; fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
+.edge { fill: none; cursor: pointer; }
+.edge-hit { fill: none; stroke: transparent; stroke-width: 10; cursor: pointer; }
+.dim { opacity: 0.12; }
+.axis text { font-size: 11px; fill: var(--ink-3); }
+.axis line { stroke: var(--line); }
+
+.assumptions { position: absolute; top: 12px; right: 12px; width: 470px; z-index: 15; padding: 12px 14px; max-height: calc(100% - 24px); overflow: auto; }
+.assumptions table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.assumptions td, .assumptions th { padding: 4px 6px; border-bottom: 1px solid var(--line-2); text-align: left; }
+.assumptions select, .assumptions input { font: inherit; font-size: 13px; }
+
+.show-names-toggle {
+  position: absolute; left: 12px; bottom: 12px; z-index: 5; font-size: 12.5px; padding: 5px 10px;
+  background: var(--panel); opacity: 0.85;
+}
+.show-names-toggle:hover { opacity: 1; }
+
+/* Popover: a button reveals a panel on demand, instead of the panel always
+   occupying layout space — reference material stays one click away, not in the way. */
+.popover-anchor { position: relative; }
+.popover {
+  position: absolute; top: calc(100% + 6px); z-index: 30; background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: 0 10px 30px rgba(20, 24, 30, 0.16); padding: 12px 14px;
+  max-height: min(70vh, 560px); overflow: auto; font-size: 13px;
+}
+.popover-left { left: 0; }
+.popover-right { right: 0; }
+
+/* Disclosure: collapsed by default so secondary detail doesn't compete with the
+   primary view until someone asks for it. */
+.disclosure { border-top: 1px solid var(--line-2); padding-top: 8px; margin-top: 8px; }
+.disclosure:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.disclosure-head {
+  display: flex; align-items: center; gap: 6px; width: 100%; text-align: left; border: 0; background: none;
+  padding: 2px 0; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3);
+}
+.disclosure-head:hover { color: var(--ink); }
+.disclosure-head .caret { display: inline-block; transition: transform 0.15s; font-size: 10px; }
+.disclosure-head .caret.open { transform: rotate(90deg); }
+.disclosure-body { padding-top: 8px; }
+
+/* ---------- Tab 2 ---------- */
+.scenario { position: absolute; inset: 0; display: grid; grid-template-columns: 290px 1fr 370px; grid-template-rows: auto minmax(0, 1fr); gap: 12px; padding: 12px; }
+.timeline { grid-column: 1 / -1; padding: 11px 16px; }
+.stages { display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px; margin-top: 6px; }
+.stage { position: relative; padding: 6px 8px; border-radius: 7px; background: var(--bg); font-size: 12.5px; border: 1px solid transparent; }
+.stage .label { font-weight: 600; }
+.stage .date { color: var(--ink-3); font-size: 11.5px; }
+.stage.passed { color: var(--ink-3); }
+.stage.passed .label::before { content: '✓ '; color: var(--jade); }
+.stage.current { background: var(--indigo-wash); border-color: #C2C9EF; }
+.stage.this { outline: 2.5px solid var(--accent); outline-offset: -1px; }
+.stage .pin { position: absolute; top: -9px; right: 6px; background: var(--accent); color: #fff; font-size: 10.5px; padding: 0 6px; border-radius: 999px; font-weight: 700; }
+.window { margin-top: 9px; font-size: 13.5px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.window .closed { color: var(--loss); font-weight: 700; }
+.window .open { color: var(--gain); font-weight: 700; }
+
+.decisions { padding: 12px 14px; overflow: auto; display: flex; flex-direction: column; gap: 10px; position: relative; }
+.preset { display: flex; gap: 8px; align-items: flex-start; padding: 5px 7px; border-radius: 7px; border: 1px solid transparent; cursor: pointer; font-size: 14px; }
+.preset:hover { background: var(--bg); }
+.preset.on { background: var(--indigo-wash); border-color: #C2C9EF; }
+.preset input { margin-top: 3px; accent-color: var(--accent); }
+.slider { display: grid; grid-template-columns: 1fr auto; gap: 0 8px; font-size: 13px; }
+.slider input { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }
+.slider .val { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* Explore pane: ripple and map used to both render, always, full height — now one
+   tile, two tabs, so only one dense visualization competes for attention at a time. */
+.explore { padding: 10px 12px; display: flex; flex-direction: column; min-width: 0; }
+.explore-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+.explore-tabs button {
+  border: 1px solid var(--line); background: var(--panel); padding: 6px 13px; border-radius: 999px;
+  font-weight: 600; font-size: 13px; font-family: var(--font-display);
+}
+.explore-tabs button[aria-pressed='true'] { background: var(--teal); color: #fff; border-color: #157894; }
+.explore-view { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.ripple-view { display: flex; flex-direction: column; min-width: 0; flex: 1; min-height: 0; }
+.ripple-view svg { flex: 1; width: 100%; min-height: 0; }
+.sankey-link { fill: none; cursor: pointer; }
+.sankey-link:hover { stroke-opacity: 0.85 !important; }
+.sankey-node text { font-size: 12px; fill: var(--ink); pointer-events: none; }
+.sankey-node rect { cursor: pointer; }
+
+.winners { padding: 10px 12px; overflow: auto; position: relative; }
+
+/* A faint bottom fade that only shows where content actually reaches it — a quiet
+   "there's more, scroll" cue instead of a hard, unsignaled clip. */
+.decisions::after, .winners::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 26px;
+  background: linear-gradient(to bottom, transparent, var(--panel));
+  pointer-events: none; border-radius: 0 0 var(--radius) var(--radius);
+}
+.wl-row { padding: 7px 5px; border-bottom: 1px solid var(--line-2); cursor: pointer; border-radius: 6px; }
+.wl-row:hover { background: var(--bg); }
+.wl-row .name { font-weight: 600; font-size: 13.5px; display: flex; gap: 8px; }
+.wl-row .name .num { margin-left: auto; font-variant-numeric: tabular-nums; }
+.wl-row .because { font-size: 12px; color: var(--ink-2); }
+.wl-row .loss { font-size: 11.5px; color: var(--ink-3); }
+
+.map-strip { display: grid; grid-template-columns: 1fr 260px; gap: 12px; min-height: 0; flex: 1; }
+.map-strip svg { width: 100%; height: 100%; display: block; }
+.map-strip .area { stroke: #fff; stroke-width: 1.5; }
+.map-strip .ward { fill: none; stroke: var(--ink-2); stroke-dasharray: 4 3; stroke-width: 1.2; cursor: pointer; pointer-events: stroke; }
+.map-notes { font-size: 12.5px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; overflow: auto; }
+
+.signal pre { font: 12px/1.4 var(--mono); background: var(--ink); color: #EFEAF7; padding: 10px; border-radius: 8px; overflow: auto; margin: 6px 0 0; }

@@ -1,0 +1,35 @@
+{
+  "name": "the-78-simulator",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run check-data && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "check-data": "node scripts/check-data.mjs",
+    "preprocess": "node scripts/preprocess-geo.mjs && node scripts/vulnerability.mjs"
+  },
+  "dependencies": {
+    "d3": "^7.9.0",
+    "d3-sankey": "^0.12.3",
+    "d3-scale-chromatic": "^3.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/d3-sankey": "^0.12.5",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "mapshaper": "^0.7.98",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5",
+    "vitest": "^3.2.7"
+  }
+}

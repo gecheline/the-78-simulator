@@ -1,0 +1,16 @@
+{
+  "evidence": "synthetic", "source": "Spec defaults: argue with these",
+  "power": { "alpha": 0.1, "beta": 1, "alpha_cap_ratio": 0.85 },
+  "simulation": { "draws": 500, "seed": 78, "weight_jitter": 0.2 },
+  "sliders": [
+    { "id": "spillover", "label": "Spending spillover to Chinatown", "min": 0, "max": 1, "step": 0.05, "value": 0.35, "help": "0 means spending stays inside the stadium district (The Battery pattern). 1 means it spreads into Chinatown. This sets the sign for tenant businesses (an open question)." },
+    { "id": "vuln_scale", "label": "Vulnerability amplifies losses by", "min": 0, "max": 2, "step": 0.1, "value": 1, "help": "Multiplies each segment's vulnerability before it amplifies losses. 0 switches the amplification off." },
+    { "id": "k_traffic_spending", "label": "Knock-on: traffic lowers spending", "min": 0, "max": 0.8, "step": 0.05, "value": 0.25, "help": "Share of the traffic shift that is subtracted from spending nearby." },
+    { "id": "k_transit_land", "label": "Knock-on: transit raises land value", "min": 0, "max": 0.8, "step": 0.05, "value": 0.3, "help": "Share of the transit shift added to land values." },
+    { "id": "k_land_retail", "label": "Knock-on: land value raises retail competition", "min": 0, "max": 0.8, "step": 0.05, "value": 0.25, "help": "Share of the land value shift added to competition for local retail." },
+    { "id": "trust_share", "label": "Land trust: share of exposed parcels in trust", "min": 0, "max": 1, "step": 0.05, "value": 0.6, "help": "How far the land trust scales the land value weight toward zero for eligible segments." },
+    { "id": "cba_cut", "label": "CBA or ordinance: cut to named losses", "min": 0, "max": 0.7, "step": 0.05, "value": 0.4, "help": "Share by which each named negative weight shrinks." },
+    { "id": "cba_holds", "label": "Chance the CBA holds", "min": 0, "max": 1, "step": 0.05, "value": 0.5, "help": "Share of runs in which the agreement takes effect. Related can decline a CBA. An ordinance is more likely to hold once it passes." }
+  ],
+  "ordinance_holds": 0.85
+}

@@ -1,0 +1,11 @@
+[
+  { "id": "traffic", "label": "Event traffic", "unit_note": "Car trips and congestion on event days. + means more traffic.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "transit", "label": "Transit access", "unit_note": "Rail and bus access to and through the site. + means better access.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "land_value", "label": "Land and property values", "unit_note": "Land values, rents and assessments nearby. + means higher.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "spending", "label": "Spending near the site", "unit_note": "Visitor spending in and around the district. + means more.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "retail_comp", "label": "Competition for local retail", "unit_note": "New stores competing with existing ones. + means more competition.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "open_space", "label": "Open space", "unit_note": "Usable public open space and river access. + means more.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "public_money", "label": "Public money spent (TIF)", "unit_note": "Tax increment committed to the site. + means more public money.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "jobs", "label": "Jobs and contracts", "unit_note": "Construction and permanent jobs and contracts. + means more.", "evidence": "synthetic", "source": "synthetic" },
+  { "id": "affordable", "label": "Affordable housing supply", "unit_note": "Affordable units near where they're needed. + means more.", "evidence": "synthetic", "source": "synthetic" }
+]

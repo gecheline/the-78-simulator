@@ -1,0 +1,62 @@
+[
+  {
+    "area": 31,
+    "name": "Lower West Side",
+    "block_groups": 24,
+    "population": 33751,
+    "factor_percentiles": {
+      "poverty_pct": 0.52,
+      "linguistic_isolation_pct": 0.78,
+      "dependents_pct": 0.34,
+      "heat_diff_vs_city": 0.52
+    },
+    "vulnerability_index": 0.54,
+    "evidence": "documented",
+    "source": "Tree Equity Score (block groups) joined via 2010 tract-to-community-area table"
+  },
+  {
+    "area": 33,
+    "name": "Near South Side",
+    "block_groups": 3,
+    "population": 5144,
+    "factor_percentiles": {
+      "poverty_pct": 0.32,
+      "linguistic_isolation_pct": 0.43,
+      "dependents_pct": 0.55,
+      "heat_diff_vs_city": 0.09
+    },
+    "vulnerability_index": 0.35,
+    "evidence": "documented",
+    "source": "Tree Equity Score (block groups) joined via 2010 tract-to-community-area table"
+  },
+  {
+    "area": 34,
+    "name": "Armour Square",
+    "block_groups": 8,
+    "population": 13845,
+    "factor_percentiles": {
+      "poverty_pct": 0.74,
+      "linguistic_isolation_pct": 0.98,
+      "dependents_pct": 0.6,
+      "heat_diff_vs_city": 0.36
+    },
+    "vulnerability_index": 0.67,
+    "evidence": "documented",
+    "source": "Tree Equity Score (block groups) joined via 2010 tract-to-community-area table"
+  },
+  {
+    "area": 60,
+    "name": "Bridgeport",
+    "block_groups": 27,
+    "population": 33747,
+    "factor_percentiles": {
+      "poverty_pct": 0.52,
+      "linguistic_isolation_pct": 0.87,
+      "dependents_pct": 0.47,
+      "heat_diff_vs_city": 0.58
+    },
+    "vulnerability_index": 0.61,
+    "evidence": "documented",
+    "source": "Tree Equity Score (block groups) joined via 2010 tract-to-community-area table"
+  }
+]
